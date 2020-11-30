@@ -1,3 +1,5 @@
+import java.io.*;
+
 import static java.lang.Character.isLowerCase;
 import static java.lang.Character.isUpperCase;
 import static java.lang.Character.toLowerCase;
@@ -75,4 +77,40 @@ public class ROT13  {
         return sb.toString();
     }
 
-}
+    public void encryptSonnet(File file){
+        try {
+            BufferedReader reader  = new BufferedReader(new FileReader(file));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("sonnet18.enc"));
+            String line;
+            while((line = reader.readLine()) != null) {
+                writer.write(encrypt(line) + "\n");
+            }
+            writer.close();
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void decryptSonnet(File file) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("sonnet18.dec"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.write(encrypt(line) + "\n");
+            }
+            writer.close();
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    }
